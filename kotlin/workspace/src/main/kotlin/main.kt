@@ -5,7 +5,7 @@ fun main() {
         println("*")
         return
     }
-    
+
     println("*".padStart(count))
     for (i in 1..(count-2))
         println("*".padStart(count - i).padEnd(count + i - 1) + "*")
