@@ -1,18 +1,20 @@
-﻿#include <iomanip>
-#include <iostream>
+﻿#include <iostream>
 
 using namespace std;
 
 int main() {
-	int count;
-	cin >> count;
-
-	if (count == 1) {
-		cout << '*'; return 0;
+	int num;
+	cin >> num;
+	if (num == 1) {
+		cout << 1 << endl;
+		return 0;
 	}
-	cout << string(count - 1, ' ') << '*' << endl;
-	for (int i = 1; i < count - 1; ++i) {
-		cout << setw(count - i) << '*' << string(2 * i - 1, ' ') << '*' << endl;
+	int a = 1;
+	int b = 3;
+	for (int i = 2; i < num; ++i) {
+		int tem = a;
+		a = b;
+		b = (2 * tem + b) % 10007;
 	}
-	cout << string(2 * count - 1, '*') << endl;
+	cout << b << endl;
 }

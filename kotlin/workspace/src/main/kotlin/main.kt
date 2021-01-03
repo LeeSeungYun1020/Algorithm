@@ -1,13 +1,11 @@
 fun main() {
-    val count = readLine()!!.toInt()
-
-    if (count == 1) {
-        println("*")
-        return
+    val num = readLine()!!.toInt()
+    var a = 1;
+    var b = 1;
+    for (i in 1.until(num)){
+        val tem = a;
+        a = b;
+        b = (tem * 2 + b) % 10007;
     }
-
-    println("*".padStart(count))
-    for (i in 1..(count-2))
-        println("*".padStart(count - i).padEnd(count + i - 1) + "*")
-    println("*".repeat(count * 2 - 1))
+    println(b)
 }
