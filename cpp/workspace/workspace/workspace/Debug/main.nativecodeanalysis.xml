@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\OneDrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\workspace\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>34</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>'i'의 지역 선언이 외부 범위에 있는 같은 이름의 선언을 숨깁니다. 자세한 내용은 줄 '17'('d:\onedrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\workspace\main.cpp')에 있는 이전 선언을 참조하십시오.</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>D:\OneDrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\workspace\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>17</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

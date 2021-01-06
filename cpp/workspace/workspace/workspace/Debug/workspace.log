@@ -1,2 +1,4 @@
-﻿  main.cpp
+﻿cl : 명령줄 warning D9025: '/analyze-'을(를) '/analyze:stacksize3200000'(으)로 재정의합니다.
+  main.cpp
+D:\OneDrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\workspace\main.cpp(34): warning C6246: 'i'의 지역 선언이 외부 범위에 있는 같은 이름의 선언을 숨깁니다. 자세한 내용은 줄 '17'('d:\onedrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\workspace\main.cpp')에 있는 이전 선언을 참조하십시오.: Lines: 17
   workspace.vcxproj -> D:\OneDrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\Debug\workspace.exe
