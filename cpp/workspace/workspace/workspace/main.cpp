@@ -7,18 +7,18 @@ int main() {
 	int count;
 	cin >> count;
 
-	int now[1000];
-	int ans[1000] = {0, };
-	int m = 1;
-	for (int i = 0; i < count; ++i) {
-		cin >> now[i];
-		ans[i] = 1;
-		for (int j = 0; j < i; ++j) {
-			if (now[i] > now[j]) {
-				ans[i] = max(ans[j] + 1, ans[i]);
-			}
-		}
-		m = max(m, ans[i]);
+	int dp[301] = {0,};
+	int num[301] = {0,};
+
+	cin >> num[1];
+	dp[1] = num[1];
+	if (count > 1) {
+		cin >> num[2];
+		dp[2] = dp[1] + num[2];
 	}
-	cout << m << endl;
+	for (int i = 3; i <= count; ++i) {
+		cin >> num[i];
+		dp[i] = max(dp[i - 3] + num[i - 1] + num[i], dp[i - 2] + num[i]);
+	}
+	cout << dp[count] << endl;
 }
