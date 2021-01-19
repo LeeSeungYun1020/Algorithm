@@ -6,7 +6,7 @@ int main() {
 	int count;
 	cin >> count;
 
-	int dp[101];
+	long long dp[101];
 	dp[0] = 0;
 	dp[1] = 1;
 	dp[2] = 1;

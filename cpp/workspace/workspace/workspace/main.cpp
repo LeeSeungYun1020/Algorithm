@@ -5,20 +5,18 @@ using namespace std;
 int main() {
 	int count;
 	cin >> count;
-
-	int dp[101];
-	dp[0] = 0;
-	dp[1] = 1;
-	dp[2] = 1;
-	dp[3] = 1;
-	dp[4] = 2;
-	for (int i = 5; i <= 100; ++i) {
-		dp[i] = dp[i - 5] + dp[i - 1];
-	}
-	
+	int* price = new int[count];
 	for (int i = 0; i < count; ++i) {
-		int num;
-		cin >> num;
-		cout << dp[num] << endl;
+		cin >> price[i];
 	}
+
+	int dp[1001] = {0, };
+	for (int i = 1; i <= count; ++i) {
+		for (int j = 0; j < i; ++j) {
+			dp[i] = max(dp[i], dp[i - j - 1] + price[j]);
+		}
+	}
+
+	cout << dp[count] << endl;
+	delete[] price;
 }
