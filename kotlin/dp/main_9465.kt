@@ -1,15 +1,14 @@
 import kotlin.math.max
 
 fun main() {
-    val input = readLine()!!.split("\n")
-    val count = input[0].toInt()
-    for (i in 0 until count){
-        val len = input[1 + 3 * i].toInt()
-        val up = input[2 + 3 * i].split(" ").map { it.toInt() }
-        val down = input[3 + 3 * i].split(" ").map { it.toInt() }
-        val dpUp = mutableListOf(up[0])
-        val dpDown = mutableListOf(down[0])
-        var m = max(up[0], down[0])
+    val count = readLine()!!.toInt()
+    for (i in 1..count){
+        val len = readLine()!!.toInt()
+        val up = readLine()!!.split(" ").map { it.toInt() }
+        val down = readLine()!!.split(" ").map { it.toInt() }
+        val dpUp = mutableListOf(up.first())
+        val dpDown = mutableListOf(down.first())
+        var m = max(up.first(), down.first())
 
         if (len > 1){
             dpUp.add(down[0] + up[1])
