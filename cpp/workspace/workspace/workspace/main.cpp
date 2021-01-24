@@ -1,22 +1,20 @@
 ﻿#include <iostream>
+#include <cmath>
 
 using namespace std;
 
 int main() {
-	int count;
-	cin >> count;
-	int* price = new int[count];
-	for (int i = 0; i < count; ++i) {
-		cin >> price[i];
-	}
+	int num;
+	cin >> num;
 
-	int dp[1001] = {0, };
-	for (int i = 1; i <= count; ++i) {
-		for (int j = 0; j < i; ++j) {
-			dp[i] = max(dp[i], dp[i - j - 1] + price[j]);
+	for (int i = 2; i <= sqrt(num); ++i) {
+		if (num % i == 0) {
+			cout << i << endl;
+			num /= i;
+			i--;
 		}
 	}
-
-	cout << dp[count] << endl;
-	delete[] price;
+	if (num != 1) {
+		cout << num << endl;
+	}
 }

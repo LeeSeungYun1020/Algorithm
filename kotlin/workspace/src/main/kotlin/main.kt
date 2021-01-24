@@ -1,15 +1,15 @@
-import kotlin.math.max
+import kotlin.math.sqrt
 
 fun main() {
-    val num = readLine()!!.toInt()
-    val list = readLine()!!.split(" ").map{ it.toInt() }
-    val dp = MutableList(num) { 1 }
-
-    for (i in (num - 2).downTo(0)){
-        for (k in (num - 1).downTo(i)){
-            if (list[i] > list[k])
-                dp[i] = max(dp[i], dp[k] + 1)
-        }
+    var num = readLine()!!.toInt()
+    val standard = sqrt(num.toDouble())
+    var i = 2
+    while (i <= standard){
+        if (num % i == 0){
+            println(i)
+            num /= i
+        } else i++
     }
-    println(dp.maxOrNull())
+    if (num != 1)
+        println(num)
 }
