@@ -1,15 +1,6 @@
-import kotlin.math.sqrt
-
 fun main() {
-    var num = readLine()!!.toInt()
-    val standard = sqrt(num.toDouble())
-    var i = 2
-    while (i <= standard){
-        if (num % i == 0){
-            println(i)
-            num /= i
-        } else i++
-    }
-    if (num != 1)
-        println(num)
+    val input = readLine()!!.split("\n").map { it.split(" ") }
+    val x = input.map { it.first() }.groupingBy { it }.eachCount().minByOrNull { it.value }!!.key
+    val y = input.map { it.last() }.groupingBy { it }.eachCount().minByOrNull { it.value }!!.key
+    println("$x $y")
 }
