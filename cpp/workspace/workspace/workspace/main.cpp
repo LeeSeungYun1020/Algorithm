@@ -1,37 +1,18 @@
 ﻿#include <iostream>
-#include <utility>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-class Member {
-	int age;
-	string name;
-public:
-	Member(int age, string name) :age(age), name(std::move(name)) {}
-	bool operator<(const Member& m) const {
-		return age < m.age;
+long long countMult(const int num, const int m) {
+	long long ans = 0;
+	for (long long i = m; i <= num; i *= m) {
+		ans += (num / i);
 	}
-	friend ostream& operator<<(ostream& os, const Member& m) {
-		os << m.age << ' ' << m.name;
-		return os;
-	}
-};
+	return ans;
+}
 
 int main() {
-	int count;
-	cin >> count;
-
-	vector<Member> members;
-	int age;
-	string name;
-	for (int i = 0; i < count; ++i) {
-		cin >> age >> name;
-		members.emplace_back(Member(age, name));
-	}
-
-	stable_sort(members.begin(), members.end());
-	for (auto && member : members) {
-		cout << member << '\n';
-	}
+	int n, m;
+	cin >> n >> m;
+	const long long five = countMult(n, 5) - countMult(n - m, 5) - countMult(m, 5);
+	const long long two = countMult(n, 2) - countMult(n - m, 2) - countMult(m, 2);
+	cout << min(five, two) << '\n';
 }

@@ -1,12 +1,28 @@
 import kotlin.math.min
 
 fun main() {
-    val (n, k) = readLine()!!.split(' ').map { it.toInt() }
-    val dp = Array(n + 1) { size -> IntArray(size / 2 + 1) { 1 } }
-    for (i in 2..n){
-        for (j in 1..(i / 2)){
-            dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][min(j, i - j - 1)]) % 10007
-        }
+    val (n, m) = readLine()!!.split(' ').map { it.toInt() }
+    val five = countFive(n) - countFive(m) - countFive(n - m)
+    val two = countTwo(n) - countTwo(m) - countTwo(n - m)
+    println(min(two, five))
+}
+
+fun countFive(num: Int): Long{
+    var five = 5L
+    var ans = 0L
+    while (five <= num) {
+        ans += (num / five)
+        five *= 5
     }
-    println(dp[n][min(k, n-k)])
+    return ans
+}
+
+fun countTwo(num: Int): Long{
+    var two = 2L
+    var ans = 0L
+    while (two <= num) {
+        ans += (num / two)
+        two *= 2
+    }
+    return ans
 }
