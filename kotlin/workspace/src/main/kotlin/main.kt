@@ -1,28 +1,27 @@
 import kotlin.math.min
 
 fun main() {
-    val (n, m) = readLine()!!.split(' ').map { it.toInt() }
-    val five = countFive(n) - countFive(m) - countFive(n - m)
-    val two = countTwo(n) - countTwo(m) - countTwo(n - m)
-    println(min(two, five))
-}
+    val input = readLine()!!.split('\n')
+    val budget = input[1].split(' ').map { it.toInt() }
+    val total = input[2].toInt()
 
-fun countFive(num: Int): Long{
-    var five = 5L
-    var ans = 0L
-    while (five <= num) {
-        ans += (num / five)
-        five *= 5
+    if (budget.sum() <= total){
+        println(budget.maxOrNull())
+        return
     }
-    return ans
-}
 
-fun countTwo(num: Int): Long{
-    var two = 2L
-    var ans = 0L
-    while (two <= num) {
-        ans += (num / two)
-        two *= 2
+    var max = budget.maxOrNull()!!
+    var min = 1
+
+    var ans = 0
+    while (min <= max) {
+        val mean = (max + min) / 2
+        if (budget.sumOf { min(it, mean).toLong() } <= total) {
+            ans = mean
+            min = mean + 1
+        } else {
+            max = mean - 1
+        }
     }
-    return ans
+    println(ans)
 }
