@@ -7,3 +7,4 @@
 |DP 동적계획법|[cpp/dp](cpp/dp)|[kotlin/io](kotlin/dp)|
 |Math 수학   |[cpp/math](cpp/math)|[kotlin/math](kotlin/math)|
 |Sort 정렬   |[cpp/sort](cpp/sort)|[kotlin/sort](kotlin/sort)|
+|Stack 스택  |[cpp/stack](cpp/stack)|[kotlin/stack](kotlin/stack)|

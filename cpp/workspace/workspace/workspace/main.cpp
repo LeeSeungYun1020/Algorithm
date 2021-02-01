@@ -1,18 +1,26 @@
 ﻿#include <iostream>
+#include <stack>
+#include <vector>
+#include <utility>
+
 using namespace std;
 
-long long countMult(const int num, const int m) {
-	long long ans = 0;
-	for (long long i = m; i <= num; i *= m) {
-		ans += (num / i);
-	}
-	return ans;
-}
-
 int main() {
-	int n, m;
-	cin >> n >> m;
-	const long long five = countMult(n, 5) - countMult(n - m, 5) - countMult(m, 5);
-	const long long two = countMult(n, 2) - countMult(n - m, 2) - countMult(m, 2);
-	cout << min(five, two) << '\n';
+	int count;
+	cin >> count;
+	
+	stack<pair<int, int>> stk;
+	vector<int> ans(count, -1);
+	for (int i = 0; i < count; ++i) {
+		int num;
+		cin >> num;
+		while (!stk.empty() && stk.top().second < num) {
+			ans[stk.top().first] = num;
+			stk.pop();
+		}
+		stk.push(make_pair(i, num));
+	}
+	
+	for (auto&& a : ans)
+		cout << a << ' ';
 }
