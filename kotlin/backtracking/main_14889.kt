@@ -7,9 +7,8 @@ lateinit var arr: Array<IntArray>
 lateinit var team1: BooleanArray
 
 fun main() {
-    val input = readLine()!!.split('\n')
-    n = input[0].toInt()
-    arr = Array<IntArray>(n) { i -> input[i + 1].split(' ').map { it.toInt() }.toIntArray() }
+    n = readLine()!!.toInt()
+    arr = Array<IntArray>(n) { readLine()!!.split(' ').map { it.toInt() }.toIntArray() }
     team1 = BooleanArray(n)
     dfs(0, 0)
     println(minValue)
