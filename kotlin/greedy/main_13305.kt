@@ -1,8 +1,7 @@
 fun main() {
-    val input = readLine()!!.split('\n')
-    val count = input[0].toInt()
-    val road = input[1].split(' ').map { it.toInt() }
-    val oil = input[2].split(' ').map { it.toInt() }
+    val count = readLine()!!.toInt()
+    val road = readLine()!!.split(' ').map { it.toInt() }
+    val oil = readLine()!!.split(' ').map { it.toInt() }
 
     var minPrice = oil[0]
     var distance = road[0].toLong()
