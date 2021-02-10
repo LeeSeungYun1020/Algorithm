@@ -11,3 +11,4 @@
 |Queue/Deque 큐와 덱           |[cpp/que](cpp/que)|[kotlin/que](kotlin/que)|
 |Brute-force 완전(무차별) 탐색  |[cpp/brute-force](cpp/brute-force)|[kotlin/brute-force](kotlin/brute-force)|
 |Greedy 탐욕                  |[cpp/greedy](cpp/greedy)|[kotlin/greedy](kotlin/greedy)|
+|Divide and Conquer          |[cpp/divide&conquer](cpp/divide&conquer)|[kotlin/divide&conquer](kotlin/divide&conquer)|
