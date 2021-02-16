@@ -1,2 +1,4 @@
 ﻿  main.cpp
+D:\OneDrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\workspace\main.cpp(29,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+D:\OneDrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\workspace\main.cpp(30,25): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   workspace.vcxproj -> D:\OneDrive - pusan.ac.kr\알고리즘\algorithm\cpp\workspace\workspace\Debug\workspace.exe

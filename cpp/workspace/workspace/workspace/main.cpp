@@ -1,58 +1,53 @@
 ﻿#include <iostream>
-#include <cmath>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-long long area;
-int arr[100000];
+vector<pair<int, int>> point;
 
-void find(const int start, const int end) {
-	if (start > end) {
-		return;
-	}
+int calcDistance(const int start, const int end) {
 	if (start == end) {
-		area = max(area, static_cast<long long>(arr[start]));
-		return;
+		return 30000;
 	}
-
+	if (start == end - 1) {
+		int dx = point[start].first - point[end].first;
+		int dy = point[start].second - point[end].second;
+		return dx * dx + dy * dy;
+	}
 	const int mid = (start + end) / 2;
-	find(start, mid);
-	find(mid + 1, end);
-
-
-	int low = mid;
-	int high = mid + 1;
-	long long height = min(arr[low], arr[high]);
-	area = max(area, height * 2);
-	while (start < low || high < end) {
-		if (low <= start) {
-			height = min(height, static_cast<long long>(arr[++high]));
-		} else if (high >= end) {
-			height = min(height, static_cast<long long>(arr[--low]));
-		} else if (arr[high + 1] > arr[low - 1]) {
-			height = min(height, static_cast<long long>(arr[++high]));
-		} else {
-			height = min(height, static_cast<long long>(arr[--low]));
+	int distance = min(calcDistance(start, mid), calcDistance(mid + 1, end));
+	const int line = point[mid].first;
+	vector<pair<int, int>> cmp;
+	for (int i = start; i <= end; ++i) {
+		const int d = point[i].first - line;
+		if (d * d < distance) {
+			cmp.push_back(point[i]);
 		}
-		area = max(area, height * (static_cast<long long>(high) - low + 1));
 	}
+	sort(cmp.begin(), cmp.end(), [&](pair<int, int>& a, pair<int, int>& b) { return a.second < b.second; });
+
+	for (int i = 0; i < static_cast<int>(cmp.size()) - 1; ++i) {
+		for (int j = i + 1; j < cmp.size(); ++j) {
+			const int dy = cmp[i].second - cmp[j].second;
+			if (dy * dy >= distance) break;
+			const int dx = cmp[i].first - cmp[j].first;
+			distance = min(distance, dx * dx + dy * dy);
+		}
+	}
+	return distance;
 }
 
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 	cout.tie(nullptr);
-
-	int num;
-	while (true) {
-		area = 0;
-		cin >> num;
-		if (num == 0) {
-			return 0;
-		}
-		for (int i = 0; i < num; ++i) {
-			cin >> arr[i];
-		}
-		find(0, num - 1);
-		cout << area << '\n';
+	int count;
+	cin >> count;
+	int x, y;
+	for (int i = 0; i < count; ++i) {
+		cin >> x >> y;
+		point.push_back(make_pair(x, y));
 	}
+	sort(point.begin(), point.end(), [&](pair<int, int>& a, pair<int, int>& b) { return a.first < b.first; });
+	cout << calcDistance(0, count - 1);
 }
