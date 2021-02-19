@@ -1,7 +1,8 @@
 import kotlin.math.min
 
 fun main() {
-    val list = readLine()!!.split('\n')[1].split(' ').map { it.toInt() }
+    readLine()
+    val list = readLine()!!.split(' ').map { it.toInt() }
     val subList = mutableListOf(list[0])
 
     list.forEach { value ->
