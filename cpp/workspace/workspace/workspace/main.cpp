@@ -7,35 +7,16 @@ int main() {
 	cin.tie(nullptr);
 	cout.tie(nullptr);
 
-	int count, limit;
-	cin >> count >> limit;
-	vector<int> input(count);
-	int mx = 0;
-	for (int i = 0; i < count; ++i) {
-		cin >> input[i];
-		mx = max(mx, input[i]);
-	}
-
-	long long start = 1;
-	long long end = mx;
-	int ans = 0;
-	while (start <= end) {
-		const long long mid = (static_cast<long long>(start) + end) / 2;
-		if (mid == 0) {
-			break;
-		}
-		long long sum = 0;
-		for (auto value : input) {
-			sum += (value / mid);
-		}
-		if (sum < limit) {
-			end = mid - 1;
+	int n, tem;
+	cin >> n;
+	vector<int> subList{0};
+	for (int i = 0; i < n; ++i) {
+		cin >> tem;
+		if (subList.back() < tem) {
+			subList.push_back(tem);
 		} else {
-			if (ans < mid) {
-				ans = mid;
-			}
-			start = mid + 1;
+			subList[lower_bound(subList.begin(), subList.end(), tem) - subList.begin()] = tem;
 		}
 	}
-	cout << ans;
+	cout << subList.size() - 1;
 }
