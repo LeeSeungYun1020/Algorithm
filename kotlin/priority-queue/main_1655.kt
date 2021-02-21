@@ -1,13 +1,13 @@
 fun main() {
-    val input = readLine()!!.split('\n').map { it.toInt() }
+    val n = readLine()!!.toInt()
     val maxHeap = MaxHeap()
     val minHeap = MinHeap()
-    for (i in 1..input[0]) {
-        val value = input[i]
+    for (i in 1..n) {
+        val input = readLine()!!.toInt()
         if (maxHeap.size() == minHeap.size()) {
-            maxHeap.add(value)
+            maxHeap.add(input)
         } else {
-            minHeap.add(value)
+            minHeap.add(input)
         }
         if (minHeap.size() > 0 && maxHeap.first() > minHeap.first()) {
             val mx = maxHeap.remove()

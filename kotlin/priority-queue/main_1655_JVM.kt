@@ -1,13 +1,20 @@
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
+
 fun main() {
-    val input = readLine()!!.split('\n').map { it.toInt() }
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val bw = BufferedWriter(OutputStreamWriter(System.out))
+    val n = br.readLine()!!.toInt()
     val maxHeap = MaxHeap()
     val minHeap = MinHeap()
-    for (i in 1..input[0]) {
-        val value = input[i]
+    for (i in 1..n) {
+        val input = br.readLine()!!.toInt()
         if (maxHeap.size() == minHeap.size()) {
-            maxHeap.add(value)
+            maxHeap.add(input)
         } else {
-            minHeap.add(value)
+            minHeap.add(input)
         }
         if (minHeap.size() > 0 && maxHeap.first() > minHeap.first()) {
             val mx = maxHeap.remove()
@@ -15,7 +22,11 @@ fun main() {
             maxHeap.add(mn)
             minHeap.add(mx)
         }
+        bw.write("${maxHeap.first()}\n")
     }
+    bw.flush()
+    bw.close()
+    br.close()
 }
 
 class MaxHeap{
