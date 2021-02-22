@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#include <algorithm>
+#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -9,14 +10,29 @@ int main() {
 
 	int n, tem;
 	cin >> n;
-	vector<int> subList{0};
+	vector<int> minHeap, maxHeap;
 	for (int i = 0; i < n; ++i) {
 		cin >> tem;
-		if (subList.back() < tem) {
-			subList.push_back(tem);
+		if (minHeap.size() == maxHeap.size()) {
+			maxHeap.push_back(tem);
+			push_heap(maxHeap.begin(), maxHeap.end());
 		} else {
-			subList[lower_bound(subList.begin(), subList.end(), tem) - subList.begin()] = tem;
+			minHeap.push_back(tem);
+			push_heap(minHeap.begin(), minHeap.end(), greater<int>());
 		}
+		if (!minHeap.empty() && minHeap.front() < maxHeap.front()) {
+			const int max = maxHeap.front();
+			pop_heap(maxHeap.begin(), maxHeap.end());
+			maxHeap.pop_back();
+			const int min = minHeap.front();
+			pop_heap(minHeap.begin(), minHeap.end(), greater<int>());
+			minHeap.pop_back();
+
+			minHeap.push_back(max);
+			push_heap(minHeap.begin(), minHeap.end(), greater<int>());
+			maxHeap.push_back(min);
+			push_heap(maxHeap.begin(), maxHeap.end());
+		}
+		cout << maxHeap.front() << '\n';
 	}
-	cout << subList.size() - 1;
 }
