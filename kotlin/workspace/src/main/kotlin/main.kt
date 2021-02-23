@@ -1,109 +1,48 @@
 fun main() {
-    val input = readLine()!!.split('\n').map { it.toInt() }
-    val maxHeap = MaxHeap()
-    val minHeap = MinHeap()
-    for (i in 1..input[0]) {
-        val value = input[i]
-        if (maxHeap.size() == minHeap.size()) {
-            maxHeap.add(value)
-        } else {
-            minHeap.add(value)
-        }
-        if (minHeap.size() > 0 && maxHeap.first() > minHeap.first()) {
-            val mx = maxHeap.remove()
-            val mn = minHeap.remove()
-            maxHeap.add(mn)
-            minHeap.add(mx)
-        }
-    }
-}
+    val (m, n) = readLine()!!.split(' ').map { it.toInt() }
+    val array = Array(n) { readLine()!!.split(' ').map { it.toInt() }.toIntArray() }
+    val deq = ArrayDeque<Triple<Int, Int, Int>>()
 
-class MaxHeap{
-    private val array = IntArray(50000)
-    private var lastIndex = -1
-
-    fun add(input: Int) {
-        array[++lastIndex] = input
-        var prev = lastIndex
-        var pos = (lastIndex - 1) / 2
-        while (pos >= 0) {
-            if (array[pos] < array[prev]) {
-                val tem = array[pos]
-                array[pos] = array[prev]
-                array[prev] = tem
-                prev = pos
-                pos = (pos - 1) / 2
-            } else break
+    var tomato = m * n
+    var count = 0
+    var day = 0
+    for (i in 0 until n) {
+        for (j in 0 until m) {
+            when (array[i][j]) {
+                1 -> {
+                    deq.add(Triple(i, j, 0))
+                    count++
+                }
+                -1 -> tomato--
+            }
         }
     }
-
-    fun remove(): Int {
-        when (lastIndex) {
-            -1 -> return 0
-            0 -> return array[lastIndex--]
+    while (deq.isNotEmpty()) {
+        val (x, y, level) = deq.removeFirst()
+        day = level
+        if (array.elementAtOrNull(x + 1)?.get(y) == 0) {
+            deq.add(Triple(x + 1, y, level + 1))
+            array[x + 1][y] = 1
+            count++
         }
-        val ans = array[0]
-        array[0] = array[lastIndex--]
-        var pos = 1
-        var prev = 0
-        while (pos <= lastIndex) {
-            val maxPos = if (array[pos] < array.elementAtOrNull(pos + 1) ?: Int.MIN_VALUE) pos + 1 else pos
-            if (array[maxPos] > array[prev]) {
-                val tem = array[maxPos]
-                array[maxPos] = array[prev]
-                array[prev] = tem
-                prev = maxPos
-                pos = maxPos * 2 + 1
-            } else break
+        if (array.elementAtOrNull(x - 1)?.get(y) == 0) {
+            deq.add(Triple(x - 1, y, level + 1))
+            array[x - 1][y] = 1
+            count++
         }
-        return ans
-    }
-
-    fun first() = array[0]
-    fun size() = lastIndex + 1
-}
-
-class MinHeap{
-    private val array = IntArray(50000)
-    private var lastIndex = -1
-
-    fun add(input: Int) {
-        array[++lastIndex] = input
-        var prev = lastIndex
-        var pos = (lastIndex - 1) / 2
-        while (pos >= 0) {
-            if (array[pos] > array[prev]) {
-                val tem = array[pos]
-                array[pos] = array[prev]
-                array[prev] = tem
-                prev = pos
-                pos = (pos - 1) / 2
-            } else break
+        if (array[x].elementAtOrNull(y + 1) == 0) {
+            deq.add(Triple(x, y + 1, level + 1))
+            array[x][y + 1] = 1
+            count++
+        }
+        if (array[x].elementAtOrNull(y - 1) == 0) {
+            deq.add(Triple(x, y - 1, level + 1))
+            array[x][y - 1] = 1
+            count++
         }
     }
-
-    fun remove(): Int {
-        when (lastIndex) {
-            -1 -> return 0
-            0 -> return array[lastIndex--]
-        }
-        val ans = array[0]
-        array[0] = array[lastIndex--]
-        var pos = 1
-        var prev = 0
-        while (pos <= lastIndex) {
-            val minPos = if (array[pos] < array.elementAtOrNull(pos + 1) ?: Int.MAX_VALUE) pos else pos + 1
-            if (array[minPos] < array[prev]) {
-                val tem = array[minPos]
-                array[minPos] = array[prev]
-                array[prev] = tem
-                prev = minPos
-                pos = minPos * 2 + 1
-            } else break
-        }
-        return ans
-    }
-
-    fun first() = array[0]
-    fun size() = lastIndex + 1
+    if (count == tomato)
+        println(day)
+    else
+        println(-1)
 }

@@ -13,4 +13,5 @@
 |Greedy 탐욕                  |[cpp/greedy](cpp/greedy)|[kotlin/greedy](kotlin/greedy)|
 |Divide and Conquer 분할 정복  |[cpp/divide&conquer](cpp/divide&conquer)|[kotlin/divide&conquer](kotlin/divide&conquer)|
 |Binary search 이진 탐색       |[cpp/binary-search](cpp/binary-search)|[kotlin/binary-search](kotlin/binary-search)|
-|Priority queue 우선순위 큐    |[cpp/priority-queue](cpp/priority-queue)|[kotlin/priority-queue](kotlin/priority-queue)|
+|Priority queue 우선순위 큐     |[cpp/priority-queue](cpp/priority-queue)|[kotlin/priority-queue](kotlin/priority-queue)|
+|DFS and BFS 깊이/너비 우선 탐색 |[cpp/dfs&bfs](cpp/dfs&bfs)|[kotlin/dfs&bfs](kotlin/dfs&bfs)|
