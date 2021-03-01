@@ -1,40 +1,56 @@
-import kotlin.math.min
-
 fun main() {
-    val (n, m) = readLine()!!.split(' ').map { it.toInt() }
-    val visited = Array(n) { Array(m) { booleanArrayOf(false, false) } }
-    val map = List(n) { readLine()!! }
-    val deq = ArrayDeque<Position>()
-    deq.add(Position(0, 0, 1, false))
-    visited[0][0][0] = true
-    while (deq.isNotEmpty()) {
-        val pos = deq.removeFirst()
-        if (pos.x == n - 1 && pos.y == m - 1) {
-            println(pos.level)
-            return
+    val count = readLine()!!.toInt()
+    for (c in 1..count) {
+        val (v, e) = readLine()!!.split(' ').map { it.toInt() }
+        val visited = Array(v + 1) { Visited.NOT }
+        val connection = Array(v + 1) { mutableListOf<Int>() }
+        for (i in 1..e) {
+            val (a, b) = readLine()!!.split(' ').map { it.toInt() }
+            connection[a].add(b)
+            connection[b].add(a)
         }
-        for (i in intArrayOf(pos.x + 1, pos.x - 1)) {
-            if (map.getOrNull(i)?.get(pos.y) == '0' && !visited[i][pos.y][if (pos.isBreak) 1 else 0]) {
-                visited[i][pos.y][if (pos.isBreak) 1 else 0] = true
-                deq.add(Position(i, pos.y, pos.level + 1, pos.isBreak))
+        val deq = ArrayDeque<Int>()
+        var pass = true
+        for (i in 1..v) {
+            if (connection[i].isNotEmpty() && visited[i] == Visited.NOT) {
+                visited[i] = Visited.RIGHT
+                deq.add(i)
+                while (deq.isNotEmpty()) {
+                    val pos = deq.removeFirst()
+                    for (cmp in connection[pos]) {
+                        if (visited[cmp] == Visited.NOT) {
+                            visited[cmp] = !visited[pos]
+                            deq.add(cmp)
+                        } else if (visited[cmp] == visited[pos]) {
+                            pass = false
+                            break
+                        }
+                    }
+                    if (!pass) break
+                }
             }
-            if (!pos.isBreak && map.getOrNull(i)?.get(pos.y) == '1' && !visited[i][pos.y][1]) {
-                visited[i][pos.y][1] = true
-                deq.add(Position(i, pos.y, pos.level + 1, true))
-            }
+            if (!pass) break
         }
-        for (i in intArrayOf(pos.y + 1, pos.y - 1)) {
-            if (map[pos.x].getOrNull(i) == '0' && !visited[pos.x][i][if (pos.isBreak) 1 else 0]) {
-                visited[pos.x][i][if (pos.isBreak) 1 else 0] = true
-                deq.add(Position(pos.x, i, pos.level + 1, pos.isBreak))
-            }
-            if (!pos.isBreak && map[pos.x].getOrNull(i) == '1' && !visited[pos.x][i][1]) {
-                visited[pos.x][i][1] = true
-                deq.add(Position(pos.x, i, pos.level + 1, true))
-            }
-        }
+        println(if (pass) "YES" else "NO")
     }
-    println(-1)
 }
 
-class Position(val x: Int, val y: Int, val level: Int, val isBreak: Boolean)
+enum class Visited {
+    NOT{
+        override operator fun not(): Visited {
+            return NOT
+        }
+       },
+    LEFT{
+        override operator fun not(): Visited {
+            return RIGHT
+        }
+        },
+    RIGHT{
+        override operator fun not(): Visited {
+            return LEFT
+        }
+    };
+
+    abstract operator fun not(): Visited
+}
