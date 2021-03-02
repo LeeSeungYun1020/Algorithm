@@ -1,17 +1,12 @@
 ﻿#include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
 
-const int movePosSize = 8;
-const pair<int, int> movePos[movePosSize] = {
-	make_pair(-2, -1), make_pair(-2, 1), make_pair(-1, -2), make_pair(-1, 2),
-	make_pair(1, -2), make_pair(1, 2), make_pair(2, -1), make_pair(2, 1)
-};
-
-class position {
-public:
-	int x, y, level;
-	position(const int x, const int y, const int level): x(x), y(y), level(level) {}
+enum class state {
+	NOT_VISITED,
+	LEFT,
+	RIGHT,
 };
 
 int main() {
@@ -22,34 +17,47 @@ int main() {
 	int count;
 	cin >> count;
 	for (int i = 0; i < count; ++i) {
-		int l;
-		cin >> l;
-		bool** visited = new bool*[l];
-		for (int j = 0; j < l; ++j) {
-			visited[j] = new bool[l]{false,};
+		int v, e;
+		cin >> v >> e;
+		vector<int>* connection = new vector<int>[v + 1];
+		state* visited = new state[v + 1]{state::NOT_VISITED};
+		deque<int> deq;
+		for (int j = 1; j <= e; ++j) {
+			int a, b;
+			cin >> a >> b;
+			connection[a].push_back(b);
+			connection[b].push_back(a);
 		}
-		int startX, startY;
-		cin >> startX >> startY;
-		int endX, endY;
-		cin >> endX >> endY;
-		deque<position> deq;
-		deq.push_back({startX, startY, 0});
-		visited[startX][startY] = true;
-		while (!deq.empty()) {
-			auto&& pos = deq.front();
-			deq.pop_front();
-			if (pos.x == endX && pos.y == endY) {
-				cout << pos.level << '\n';
-				break;
-			}
-			for (const auto& mp : movePos) {
-				const int x = pos.x + mp.first;
-				const int y = pos.y + mp.second;
-				if (x >= 0 && x < l && y >= 0 && y < l && !visited[x][y]) {
-					visited[x][y] = true;
-					deq.push_back({x, y, pos.level + 1});
+
+		bool pass = true;
+		for (int k = 1; k <= v; ++k) {
+			if (visited[k] == state::NOT_VISITED) {
+				visited[k] = state::RIGHT;
+				deq.push_back(k);
+				while (!deq.empty()) {
+					const int pos = deq.front();
+					deq.pop_front();
+					for (auto cmp : connection[pos]) {
+						if (visited[cmp] == state::NOT_VISITED) {
+							if (visited[pos] == state::RIGHT) {
+								visited[cmp] = state::LEFT;
+							} else {
+								visited[cmp] = state::RIGHT;
+							}
+							deq.push_back(cmp);
+						} else if (visited[cmp] == visited[pos]) {
+							pass = false;
+							break;
+						}
+					}
+					if (!pass) break;
 				}
 			}
+			if (!pass) break;
 		}
+		if (pass) cout << "YES\n";
+		else cout << "NO\n";
+		delete[] connection;
+		delete[] visited;
 	}
 }
