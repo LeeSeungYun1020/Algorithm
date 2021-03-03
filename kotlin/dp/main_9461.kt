@@ -1,12 +1,11 @@
 fun main() {
-    val count = readLine()!!.toInt()
-    val dp = mutableListOf<Long>(1, 1, 1)
-    var lim = 3
-    for (c in 1..count){
-        val num = readLine()!!.toInt()
-        for (i in lim until num)
-            dp.add(dp[i - 3] + dp[i - 2])
-        if (lim < num) lim = num
-        println(dp[num - 1])
+    val array = LongArray(101)
+    array[1] = 1
+    array[2] = 1
+    for (i in 3..100) {
+        array[i] = (array[i - 3] + array[i - 2])
+    }
+    for (c in 1..readLine()!!.toInt()) {
+        println(array[readLine()!!.toInt()])
     }
 }
