@@ -1,16 +1,16 @@
-import kotlin.math.min
+import kotlin.math.max
 
 fun main() {
-    val house = readLine()!!.toInt()
-    var dp = readLine()!!.split(' ').map { it.toInt() }.toIntArray()
-    for (i in 2..house) {
-        val (r, g, b) = readLine()!!.split(' ').map { it.toInt() }
-        val dpR = min(dp[1], dp[2]) + r
-        val dpG = min(dp[0], dp[2]) + g
-        val dpB = min(dp[0], dp[1]) + b
-        dp[0] = dpR
-        dp[1] = dpG
-        dp[2] = dpB
+    val (n, k) = readLine()!!.split(' ').map { it.toInt() }
+    val array = Array(n + 1) { IntArray(k + 1) }
+    for (i in 1..n) {
+        val (weight, value) = readLine()!!.split(' ').map { it.toInt() }
+        for (j in 1..k) {
+            array[i][j] = when {
+                j < weight -> array[i - 1][j]
+                else -> max(value + array[i - 1][j - weight], array[i - 1][j])
+            }
+        }
     }
-    println(dp.minOrNull())
+    println(array[n][k])
 }
