@@ -7,19 +7,22 @@ int main() {
 	cin.tie(nullptr);
 	cout.tie(nullptr);
 
-	int house;
-	cin >> house;
-	int dp[3];
-	cin >> dp[0] >> dp[1] >> dp[2];
-	for (int i = 1; i < house; ++i) {
-		int r, g, b;
-		cin >> r >> g >> b;
-		const int dpR = min(dp[1], dp[2]) + r;
-		const int dpG = min(dp[0], dp[2]) + g;
-		const int dpB = min(dp[0], dp[1]) + b;
-		dp[0] = dpR;
-		dp[1] = dpG;
-		dp[2] = dpB;
+	int n, k;
+	cin >> n >> k;
+	int** array = new int*[n + 1];
+	array[0] = new int[k + 1]{0,};
+	for (int i = 1; i <= n; ++i) {
+		array[i] = new int[k + 1];
+		array[i][0] = 0;
+		int weight, value;
+		cin >> weight >> value;
+		for (int j = 1; j <= k; ++j) {
+			if (j < weight) {
+				array[i][j] = array[i - 1][j];
+			} else {
+				array[i][j] = max(array[i - 1][j - weight] + value, array[i - 1][j]);
+			}
+		}
 	}
-	cout << min(dp[0], min(dp[1], dp[2]));
+	cout << array[n][k];
 }
