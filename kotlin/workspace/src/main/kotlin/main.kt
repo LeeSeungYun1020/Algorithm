@@ -1,16 +1,19 @@
-import kotlin.math.max
-
 fun main() {
-    val (n, k) = readLine()!!.split(' ').map { it.toInt() }
-    val array = Array(n + 1) { IntArray(k + 1) }
-    for (i in 1..n) {
-        val (weight, value) = readLine()!!.split(' ').map { it.toInt() }
-        for (j in 1..k) {
-            array[i][j] = when {
-                j < weight -> array[i - 1][j]
-                else -> max(value + array[i - 1][j - weight], array[i - 1][j])
-            }
+    readLine()
+    val list = readLine()!!.split(" ").map { it.toInt() }
+    val sortedList = list.sorted()
+
+    var idx = 0
+    val map = mutableMapOf<Int, Int>()
+    for (value in sortedList){
+        if (map[value] == null) {
+            map[value] = idx++
         }
     }
-    println(array[n][k])
+
+    val sb = StringBuilder()
+    for (value in list) {
+        sb.append(map[value]).append(' ')
+    }
+    print(sb)
 }
