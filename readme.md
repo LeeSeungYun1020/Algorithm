@@ -1,5 +1,10 @@
 # Algorithm
+
+## 개요
 알고리즘 공부
+
+## 백준 단계별로 풀어보기
+백준 [단계별로 풀어보기](https://www.acmicpc.net/step)
 
 |항목                          |C++              |Kotlin                 |
 |-----------------------------|-----------------|-----------------------|
@@ -15,3 +20,19 @@
 |Binary search 이진 탐색       |[cpp/binary-search](cpp/binary-search)|[kotlin/binary-search](kotlin/binary-search)|
 |Priority queue 우선순위 큐     |[cpp/priority-queue](cpp/priority-queue)|[kotlin/priority-queue](kotlin/priority-queue)|
 |DFS and BFS 깊이/너비 우선 탐색 |[cpp/dfs&bfs](cpp/dfs&bfs)|[kotlin/dfs&bfs](kotlin/dfs&bfs)|
+
+## 프로그래머스 코딩테스트 고득점 Kit
+프로그래머스 [코딩테스트 고득점 Kit](https://programmers.co.kr/learn/challenges)
+
+| 항목                   | Python                         |
+|----------------------|--------------------------------|
+| 해시                   | [대기]()                         |
+| 스택/큐                 | [대기]()                         |
+| 힙(Heap)              | [대기]()                         |
+| 정렬                   | [대기]()                         |
+| 완전탐색                 | [대기]()                         |
+| 탐욕법(Greedy)          | [python/greedy](python/greedy) |
+| 동적계획법(DP)            | [대기]()                         |
+| 깊이/너비 우선 탐색(DFS/BFS) | [대기]()                         |
+| 이분탐색                 | [대기]()                         |
+| 그래프                  | [대기]()                         |
