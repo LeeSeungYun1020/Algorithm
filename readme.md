@@ -34,7 +34,7 @@
 | 힙(Heap)              | [대기]()                         |
 | 정렬                   | [대기]()                         |
 | 완전탐색                 | [대기]()                         |
-| 탐욕법(Greedy)          | [python/greedy](python/greedy) |
+| 탐욕법(Greedy)          | [python/greedy](python/kit/greedy) |
 | 동적계획법(DP)            | [대기]()                         |
 | 깊이/너비 우선 탐색(DFS/BFS) | [대기]()                         |
 | 이분탐색                 | [대기]()                         |
