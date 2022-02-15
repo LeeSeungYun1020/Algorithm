@@ -43,9 +43,7 @@ def solution(name):
                 count = 0
         moveLR = min(moveLR, -i + len(name) - 1 - count)
 
-    print(change, end=", ")
-    print(moveRight, moveLeft, moveRL, moveLR)
+    # print(change, end=", ")
+    # print(moveRight, moveLeft, moveRL, moveLR)
     answer += min(moveRight, moveLeft, moveRL, moveLR)
     return answer
-
-print(solution(	"BBBBAAAABA")) # 12
