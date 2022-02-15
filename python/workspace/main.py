@@ -1,51 +1,26 @@
-def solution(name):
-    # 알파벳 이동
-    change = sum([min(ord(ch) - ord('A'), ord('Z') - ord(ch) + 1) for ch in name])
-    answer = change
+from collections import deque
+import sys
+input = sys.stdin.readline
 
-    # 오른쪽으로 쭉 이동
-    count = 0
-    for i in range(len(name)):
-        if name[i] == 'A':
-            count += 1
-        else:
-            count = 0
-    moveRight = len(name) - 1 - count
-    moveRight = max(moveRight, 0)
-    # 왼쪽으로 쭉 이동
-    count = 0
-    for i in range(0, -len(name), -1):
-        if name[i] == 'A':
-            count += 1
-        else:
-            count = 0
-    print(count)
-    moveLeft = len(name) - 1 - count
-    moveLeft = max(moveLeft, 0)
-    # 오른쪽으로 가다 왼쪽으로 이동
-    moveRL = len(name) - 1
-    for i in range(1, len(name)):
-        count = 0
-        for j in range(i - 1, i - len(name), -1):
-            if name[j] == 'A':
-                count += 1
-            else:
-                count = 0
-        moveRL = min(moveRL, i + len(name) - 1 - count)
-    # 왼쪽으로 가다 오른쪽으로 이동
-    moveLR = len(name) - 1
-    for i in range(-1, -len(name), -1):
-        count = 0
-        for j in range(i, i + len(name)):
-            if name[j] == 'A':
-                count += 1
-            else:
-                count = 0
-        moveLR = min(moveLR, -i + len(name) - 1 - count)
+dx = [-2, -2, 0, 0, 2, 2]
+dy = [-1, 1, -2, 2, -1, 1]
+n = int(input().rstrip())
+r1, c1, r2, c2 = map(int, input().rstrip().split())
+visited = [[0]*n for _ in range(n)] # 0 ~ n-1까지.
 
-    print(change, end=", ")
-    print(moveRight, moveLeft, moveRL, moveLR)
-    answer += min(moveRight, moveLeft, moveRL, moveLR)
-    return answer
+q = deque()
+q.append([r1, c1])
+visited[r1][c1] = 1
 
-print(solution(	"BBBBAAAABA")) # 12
+while q:
+    x, y = q.popleft()
+    for i in range(6):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if 0 <= nx < n and 0 <= ny < n and visited[nx][ny] == 0:
+            q.append([nx, ny])
+            visited[nx][ny] = visited[x][y] + 1
+    print(q)
+
+print(visited[r2][c2]-1)
+
