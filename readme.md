@@ -22,6 +22,7 @@
 | Binary search 이진 탐색      | [Binary search](cpp/step/binary-search)       | [Binary search](kotlin/step/binary-search)       | 대기                                 |
 | Priority queue 우선순위 큐    | [Priority queue](cpp/step/priority-queue)     | [Priority queue](kotlin/step/priority-queue)     | 대기                                 |
 | DFS and BFS 깊이/너비 우선 탐색  | [DFS and BFS](cpp/step/dfs&bfs)               | [DFS and BFS](kotlin/step/dfs&bfs)               | [DFS and BFS](python/step/dfs&bfs) |
+| MST 최소 신장 트리             | 대기                                            | [MST](kotlin/step/mst)                           | 대기                                 |
 
 ## 프로그래머스 코딩테스트 고득점 Kit
 
