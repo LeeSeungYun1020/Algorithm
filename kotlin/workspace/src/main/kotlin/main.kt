@@ -1,55 +1,23 @@
-import kotlin.math.max
-
-enum class Direction {
-    WIDTH, HEIGHT
-}
-
 fun main() {
-    val (n, m) = readln().split(" ").map { it.toInt() }
-    val paper = List(n) { readln().map { it.digitToInt() } }
-    val selected = List(n) { MutableList(m) { Direction.WIDTH } }
-    var ans = 0
-
-    fun calcSum(): Int {
-        var sum = 0
-        for (i in 0 until n) {
-            var subSum = 0
-            for (j in 0 until m) {
-                if (selected[i][j] == Direction.WIDTH) {
-                    subSum = subSum * 10 + paper[i][j]
-                } else {
-                    sum += subSum
-                    subSum = 0
-                }
-            }
-            sum += subSum
+    val str = readln()
+    val pattern = readln()
+    val schedule = ArrayDeque<Int>()
+    val ans = mutableListOf<Int>()
+    for (i in 0..str.lastIndex) {
+        if (str[i] == pattern[0])
+            schedule.addFirst(0)
+        for (j in 0..schedule.lastIndex) {
+            if (pattern[schedule[j]] == str[i])
+                schedule[j] += 1
+            else
+                schedule[j] = -1
         }
-        for (j in 0 until m) {
-            var subSum = 0
-            for (i in 0 until n) {
-                if (selected[i][j] == Direction.HEIGHT) {
-                    subSum = subSum * 10 + paper[i][j]
-                } else {
-                    sum += subSum
-                    subSum = 0
-                }
-            }
-            sum += subSum
+        schedule.removeIf { it == -1 }
+        if (schedule.lastOrNull() == pattern.length) {
+            schedule.removeLast()
+            ans.add(i - pattern.lastIndex + 1)
         }
-        return sum
     }
-
-    fun dfs(pos: Pair<Int, Int>) {
-        if (pos.first == n) {
-            ans = max(ans, calcSum())
-            return
-        }
-        val next = if (pos.second + 1 == m) pos.first + 1 to 0 else pos.first to pos.second + 1
-        selected[pos.first][pos.second] = Direction.WIDTH
-        dfs(next)
-        selected[pos.first][pos.second] = Direction.HEIGHT
-        dfs(next)
-    }
-    dfs(0 to 0)
-    println(ans)
+    println(ans.size)
+    println(ans.joinToString(" "))
 }
