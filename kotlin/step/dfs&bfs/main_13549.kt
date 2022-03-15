@@ -25,7 +25,7 @@ fun main() {
             val move = pos * 2
             if (visited.getOrNull(move) == false) {
                 visited[move] = true
-                deque.addFirst(State(move, t))
+                deque.addFirst(State(move, t))// 가중치가 적은 항목은 앞에 넣어야 함
             }
         }
 
