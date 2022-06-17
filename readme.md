@@ -31,18 +31,18 @@
 
 프로그래머스 [코딩테스트 고득점 Kit](https://programmers.co.kr/learn/challenges) 에 있는 문제 코드
 
-| 항목                   | Python                   |
-|----------------------|--------------------------|
-| 해시                   | -                        |
-| 스택/큐                 | -                        |
-| 힙(Heap)              | -                        |
-| 정렬                   | -                        |
-| 완전탐색                 | -                        |
-| 탐욕법(Greedy)          | [탐욕법](python/kit/greedy) |
-| 동적계획법(DP)            | -                        |
-| 깊이/너비 우선 탐색(DFS/BFS) | -                        |
-| 이분탐색                 | -                        |
-| 그래프                  | -                        |
+| 항목                   | Kotlin                            | Python                         |
+|----------------------|-----------------------------------|--------------------------------|
+| 해시                   | [해시](kotlin/kit/hash)             | [해시](python/kit/hash)          |
+| 스택/큐                 | [스택/큐](kotlin/kit/stack-queue)    | [스택/큐](python/kit/stack-queue) |
+| 힙(Heap)              | [힙](kotlin/kit/heap)              | [힙](python/kit/heap)           |
+| 정렬                   | [정렬](kotlin/kit/sort)             |[정렬](python/kit/sort)             |
+| 완전탐색                 | [완전탐색](kotlin/kit/brute-force)    |[완전탐색](python/kit/brute-force)    |
+| 탐욕법(Greedy)          | [탐욕법](kotlin/kit/greedy)          |[탐욕법](python/kit/greedy)          |
+| 동적계획법(DP)            | [동적계획법](kotlin/kit/dp)            |[동적계획법](python/kit/dp)            |
+| 깊이/너비 우선 탐색(DFS/BFS) | [깊이/너비 우선 탐색](kotlin/kit/dfs-bfs) |[깊이/너비 우선 탐색](python/kit/dfs-bfs) |
+| 이분탐색                 | [이분탐색](kotlin/kit/binary-search)  |[이분탐색](python/kit/binary-search)  |
+| 그래프                  | [그래프](kotlin/kit/graph)               |[그래프](python/kit/graph)           |
 
 
 ## SW Expert Academy
