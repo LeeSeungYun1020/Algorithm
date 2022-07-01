@@ -2,6 +2,7 @@ data class Paper(val location: Int, val priority: Int)
 class Solution {
     fun solution(priorities: IntArray, location: Int): Int {
         val deque = ArrayDeque<Paper>()
+        val temp = ArrayDeque<Paper>()
         for (i in 0..priorities.lastIndex) {
             deque.add(Paper(i, priorities[i]))
         }
