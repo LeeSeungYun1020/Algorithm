@@ -16,6 +16,7 @@ class Solution {
         }
         return false
     }
+
     fun solution(begin: String, target: String, words: Array<String>): Int {
         if (target !in words)
             return 0
