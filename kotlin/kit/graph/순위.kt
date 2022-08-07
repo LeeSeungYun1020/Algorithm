@@ -55,13 +55,3 @@ class Solution {
         return answer
     }
 }
-
-fun main() {
-    val solution = Solution()
-    println(
-        "Ans " + solution.solution(
-            5,
-            arrayOf(intArrayOf(4, 3), intArrayOf(4, 2), intArrayOf(3, 2), intArrayOf(1, 2), intArrayOf(2, 5))
-        )
-    )
-}
