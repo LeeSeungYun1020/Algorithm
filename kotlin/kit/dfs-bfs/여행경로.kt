@@ -7,7 +7,6 @@ class Solution {
         fun dfs(prev: String, level: Int): Boolean {
             if (level == sortedTickets.size) {
                 return true
-                // 더이상 반복 진행되면 안됨...
             }
             for (i in sortedTickets.indices) {
                 if (sortedTickets[i][0] == prev && !visited[i]) {
@@ -24,13 +23,4 @@ class Solution {
 
         return answer
     }
-}
-
-fun main() {
-    val solution = Solution()
-    println(
-        "Ans " + solution.solution(
-            arrayOf(arrayOf("ICN", "SFO"), arrayOf("ICN", "ATL"), arrayOf("SFO", "ATL"), arrayOf("ATL", "ICN"), arrayOf("ATL", "SFO"))
-        ).toList()
-    )
 }
